@@ -23,6 +23,7 @@ This WPF app fetches 100 posts from the [JSONPlaceholder API](https://jsonplaceh
 ## Motivation & Design Choices
 
 - I chose the MVVM pattern for clear separation of concerns and testability.
+- The application uses Dependency Injection to decouple the layers, improving testability, maintainability, and adhering to best practices.
 - Polly retry policy ensures resiliency in case of temporary network issues.
 - Using `ObservableCollection` ensures efficient UI updates without manual refresh.
 - ToggleCommand updates a boolean property that controls the display mode, minimizing UI logic in code-behind.
