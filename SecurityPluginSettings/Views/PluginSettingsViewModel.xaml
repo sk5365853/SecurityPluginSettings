@@ -6,37 +6,52 @@
         xmlns:local="clr-namespace:SecurityPluginSettings"
         xmlns:helper="clr-namespace:SecurityPluginSettings.Helper"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Security Plugin Settings"
+        WindowState="Maximized"
+        Background="LightGray">
 
-<Window.Resources>
-    <helper:PostDisplayMultiConverter x:Key="PostDisplayMultiConverter" />
-</Window.Resources>
+    <Window.Resources>
+        <helper:PostDisplayMultiConverter x:Key="PostDisplayMultiConverter" />
+    </Window.Resources>
 
+    <DockPanel LastChildFill="True">
 
-    <ScrollViewer>
-        <ItemsControl ItemsSource="{Binding Posts}">
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <UniformGrid Columns="10"/>
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <Button Command="{Binding DataContext.ToggleCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
-                        Margin="5" Height="80" Width="80">
-                        <TextBlock TextAlignment="Center" VerticalAlignment="Center">
-                            <TextBlock.Text>
-                                <MultiBinding Converter="{StaticResource PostDisplayMultiConverter}">
-                                    <Binding Path="." />
-                                    <Binding Path="DataContext.ShowIds" RelativeSource="{RelativeSource AncestorType=ItemsControl}" />
-                                </MultiBinding>
-                            </TextBlock.Text>
-                        </TextBlock>
+        <Border Background="White" Height="60" BorderBrush="DarkGray" BorderThickness="0,0,0,1" DockPanel.Dock="Top">
+            <TextBlock Text="Security Plugin Settings"
+                       FontSize="24"
+                       FontWeight="Bold"
+                       Foreground="Black"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Padding="10"/>
+        </Border>
 
-                    </Button>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
-    </ScrollViewer>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <ItemsControl ItemsSource="{Binding Posts}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Columns="10"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button Command="{Binding DataContext.ToggleCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                Margin="5" Height="80" Width="80"
+                                Background="White" BorderBrush="DarkGray">
+                            <TextBlock TextAlignment="Center" VerticalAlignment="Center">
+                                <TextBlock.Text>
+                                    <MultiBinding Converter="{StaticResource PostDisplayMultiConverter}">
+                                        <Binding Path="." />
+                                        <Binding Path="DataContext.ShowIds" RelativeSource="{RelativeSource AncestorType=ItemsControl}" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </Button>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+
+    </DockPanel>
 
 </Window>
